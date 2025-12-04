@@ -8,6 +8,10 @@ module.exports = defineConfig({
       secure: process.env.COOKIE_OPTION === "true",
       sameSite: "lax",
     },
+    workerMode: process.env.MEDUSA_WORKER_MODE as
+      | "shared"
+      | "worker"
+      | "server",
     databaseUrl: process.env.DATABASE_URL,
     http: {
       storeCors: process.env.STORE_CORS!,
@@ -16,5 +20,8 @@ module.exports = defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
+  },
+  admin: {
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
 });
